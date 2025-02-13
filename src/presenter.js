@@ -11,5 +11,5 @@ form.addEventListener("submit", (event) => {
     resultDiv.innerHTML = <p>${saludar(nombre)}</p>;
   } else {
     resultDiv.innerHTML = "<p>Por favor, ingresa tu nombre.</p>";
-  }
+  }
 });
