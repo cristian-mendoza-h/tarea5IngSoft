@@ -10,9 +10,18 @@ function obtenerSaludoSegunHora() {
   }
 }
 
-function saludar(nombre, genero) {
+function saludar(nombre, genero, edad) {
   const saludo = obtenerSaludoSegunHora();
   let generoSaludo = "bienvenide";
+  let prefijo = "";
+
+  if (edad > 30) {
+    if (genero === "masculino") {
+      prefijo = "Sr. ";
+    } else if (genero === "femenino") {
+      prefijo = "Sra. ";
+    }
+  }
 
   if (genero === "masculino") {
     generoSaludo = "bienvenido";
@@ -20,7 +29,7 @@ function saludar(nombre, genero) {
     generoSaludo = "bienvenida";
   }
 
-  return `${saludo}, ${nombre}, ${generoSaludo}!`;
+  return `${saludo}, ${prefijo}${nombre}, ${generoSaludo}!`;
 }
 
 export default saludar;
