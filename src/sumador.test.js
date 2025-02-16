@@ -1,9 +1,19 @@
-import sumar from "./sumador.js";
+import saludar from "./saludar.js";
 
-describe("Sumar", () => {
-  it("deberia sumar dos numeros", () => {
-    expect(sumar(3, 2)).toEqual(5);
-  });
+const nameInput = document.querySelector("#nombre");
+const genderSelect = document.querySelector("#genero");
+const form = document.querySelector("#saludar-form");
+const resultDiv = document.querySelector("#resultado-div");
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const nombre = nameInput.value.trim();
+  const genero = genderSelect.value;
+
+  if (nombre) {
+    resultDiv.innerHTML = <p>${saludar(nombre, genero)}</p>;
+  } else {
+    resultDiv.innerHTML = "<p>Por favor, ingresa tu nombre.</p>";
+  }
 });
-
-
