@@ -1,35 +1,21 @@
-function obtenerSaludoSegunHora() {
+export default function saludar(nombre, genero, edad, idioma = "es") {
   const hora = new Date().getHours();
+  let saludo = "";
 
-  if (hora >= 5 && hora < 12) {
-    return "Buenos días";
-  } else if (hora >= 12 && hora < 18) {
-    return "Buenas tardes";
+  if (idioma === "es") {
+      saludo = hora < 12 ? "Buenos días" : hora < 18 ? "Buenas tardes" : "Buenas noches";
   } else {
-    return "Buenas noches";
+      saludo = hora < 12 ? "Good morning" : hora < 18 ? "Good afternoon" : "Good evening";
   }
-}
 
-function saludar(nombre, genero, edad) {
-  const saludo = obtenerSaludoSegunHora();
-  let generoSaludo = "bienvenide";
-  let prefijo = "";
-
+  let tratamiento = "";
   if (edad > 30) {
-    if (genero === "masculino") {
-      prefijo = "Sr. ";
-    } else if (genero === "femenino") {
-      prefijo = "Sra. ";
-    }
+      if (idioma === "es") {
+          tratamiento = genero === "M" ? "Sr." : "Sra.";
+      } else {
+          tratamiento = genero === "M" ? "Mr." : "Mrs.";
+      }
   }
 
-  if (genero === "masculino") {
-    generoSaludo = "bienvenido";
-  } else if (genero === "femenino") {
-    generoSaludo = "bienvenida";
-  }
-
-  return `${saludo}, ${prefijo}${nombre}, ${generoSaludo}!`;
+  return `${saludo}, ${tratamiento} ${nombre}`;
 }
-
-export default saludar;

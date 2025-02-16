@@ -1,21 +1,23 @@
-import saludar from "./saludar.js";
+import saludar from "./saludar.js"; // Asegúrate de que la ruta es correcta
 
-const nameInput = document.querySelector("#nombre");
-const genderSelect = document.querySelector("#genero");
-const ageInput = document.querySelector("#edad");
 const form = document.querySelector("#saludar-form");
+const nombreInput = document.querySelector("#nombre");
+const generoInput = document.querySelector("#genero");
+const edadInput = document.querySelector("#edad");
+const idiomaInput = document.querySelector("#idioma");
 const resultDiv = document.querySelector("#resultado-div");
 
 form.addEventListener("submit", (event) => {
-  event.preventDefault();
+    event.preventDefault();
+    
+    const nombre = nombreInput.value.trim();
+    const genero = generoInput.value.trim().toUpperCase(); // M o F
+    const edad = parseInt(edadInput.value, 10);
+    const idioma = idiomaInput.value.trim().toLowerCase(); // es o en
 
-  const nombre = nameInput.value.trim();
-  const genero = genderSelect.value;
-  const edad = parseInt(ageInput.value, 10);
-
-  if (nombre && !isNaN(edad)) {
-    resultDiv.innerHTML = `<p>${saludar(nombre, genero, edad)}</p>`;
-  } else {
-    resultDiv.innerHTML = "<p>Por favor, ingresa tu nombre y edad correctamente.</p>";
-  }
+    if (nombre && (genero === "M" || genero === "F") && !isNaN(edad) && edad > 0 && (idioma === "es" || idioma === "en")) {
+        resultDiv.innerHTML = `<p>${saludar(nombre, genero, edad, idioma)}</p>`;
+    } else {
+        resultDiv.innerHTML = "<p>Por favor, completa todos los campos correctamente.</p>";
+    }
 });
